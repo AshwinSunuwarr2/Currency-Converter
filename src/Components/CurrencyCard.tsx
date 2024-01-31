@@ -2,6 +2,18 @@
 
 import { useId } from "react";
 
+interface CurrencyCardProps {
+  label?: string;
+  className?: string;
+  amount: number;
+  onAmountChange?: (newAmount: number) => void;
+  onCurrencyChange: (newCurrency: string) => void;
+  currencyOptions: string[];
+  selectCurrency: string;
+  amountDisabled?: boolean;
+  currencyDisabled?: boolean;
+}
+
 function CurrencyCard({
   label = "",
   className = "",
@@ -12,16 +24,18 @@ function CurrencyCard({
   selectCurrency = "usd",
   amountDisabled = false,
   currencyDisabled = false,
-}) {
+}: CurrencyCardProps) {
   const currencyId = useId();
   return (
-    <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
+    <div
+      className={`bg-white p-3 rounded-lg text-sm flex justify-between items-center ${className}`}
+    >
       <div className="w-1/2">
-        <label className="text-black/40 mb-2 " htmlFor="currencyId">
+        <label className="text-black/40 mb-2 " htmlFor={currencyId}>
           {label}
         </label>
         <input
-          id="currencyId"
+          id={currencyId}
           type="number"
           placeholder="Amount"
           disabled={amountDisabled}
@@ -32,16 +46,16 @@ function CurrencyCard({
         />
       </div>
 
-      <div className="w-1/2 flex flex-wrap justify-end text-right">
-        <p>{selectCurrency}</p>
+      <div className="w-1/4 flex flex-col text-right self-end">
+        <p>Currency Type</p>
         <select
           value={selectCurrency}
           onChange={(e) => onCurrencyChange(e.target.value)}
           disabled={currencyDisabled}
         >
           {currencyOptions.map((curr) => (
-            <option key={curr} value={currency}>
-              {currency}
+            <option key={curr} value={curr}>
+              {curr}
             </option>
           ))}
         </select>
