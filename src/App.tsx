@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div
-      className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat bg-center bg-fixed"
+      className="w-full h-screen flex justify-center items-center bg-cover bg-no-repeat bg-center bg-fixed"
       style={{
         backgroundImage: `url('https://images.pexels.com/photos/20037843/pexels-photo-20037843/free-photo-of-compania.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
       }}
